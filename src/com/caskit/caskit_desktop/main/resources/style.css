@@ -1,0 +1,146 @@
+/* Styling the slider track */
+
+* {
+    -theme-color: #313541;
+    -text-color: #505050;
+    -text-color-dull: #9b9b9b;
+    -red: #e44242;
+    -yellow: #ffe730;
+    -warning: #ff8100;
+
+    -fx-font-family: 'Open Sans';
+    -fx-fill: -theme-color;
+
+    -jfx-toggle-color: -theme-color;
+    -jfx-untoggle-color: white;
+
+}
+
+.title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.subtitle {
+    -fx-padding: 20px 0 5px 0;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.drop-shadow {
+    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 2, 0, 0, 0);*/
+}
+
+.rounded-container {
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+}
+
+.group-container {
+    -fx-padding: 15px 15px 0 15px;
+}
+
+.setting-container {
+    -fx-pref-height: 45px;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+}
+
+.setting-label > .text {
+    -fx-fill: -theme-color !important;
+}
+
+.setting-label {
+    -fx-font-size: 11px;
+    /*-fx-font-weight: bold;*/
+
+    -fx-pref-width: 150px;
+    -fx-padding: 0 0 0 5px;
+}
+
+.caskit-button {
+    -fx-pref-width: 75px;
+}
+
+.caskit-button > .text {
+    -fx-fill: white;
+}
+
+.dull-button {
+    -fx-background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.dull-button > .text {
+    -fx-fill: -theme-color;
+}
+
+.status-indicator {
+    fx-border-color: rgba(0, 0, 0, 0.25);
+}
+
+/* Styling the slider track */
+.jfx-slider > .track {
+    -fx-background-color: -text-color-dull;
+}
+
+/* Styling the slider thumb */
+.jfx-slider > .thumb {
+    -fx-background-color: -theme-color;
+}
+
+/* Styling the filled track */
+.jfx-slider > .colored-track {
+    -fx-background-color: -theme-color;
+}
+
+/* Styling the animated thumb */
+.jfx-slider > .animated-thumb {
+    -fx-background-color: -theme-color;
+}
+
+/* Styling the slider value text inside animated thumb */
+.jfx-slider .slider-value {
+    -fx-fill: white;
+}
+
+.jfx-button {
+    -jfx-button-type: FLAT;
+    -fx-background-color: -theme-color;
+}
+
+.jfx-toggle-button > .text {
+    visibility: false;
+}
+
+.tab-header-background {
+    -fx-background-color: -theme-color;
+}
+
+.tab-selected-line {
+    -fx-background-color: white;
+}
+
+.tab-label > .text {
+    -fx-font-size: 12px;
+    -fx-fill: white;
+}
+
+.tooltip {
+    -fx-background-color: white;
+    -fx-font-size: 12px;
+    -fx-font-family: 'Open Sans';
+    -fx-font-weight: normal;
+}
+
+
+@font-face {
+    src: url('fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    src: url('fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+    src: url('fonts/OpenSans-ExtraBoldItalic.ttf');
+}

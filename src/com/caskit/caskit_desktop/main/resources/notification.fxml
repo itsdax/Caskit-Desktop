@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: rgba(0, 0, 0, 0.1); -fx-border-radius: 3px; -fx-background-radius: 3px;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.NotificationController">
+   <children>
+      <Label fx:id="label" alignment="CENTER" layoutX="87.0" layoutY="55.0" text="Status" textAlignment="CENTER" textFill="#727272" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0" />
+   </children>
+</AnchorPane>

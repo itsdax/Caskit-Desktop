@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.LoginController">
+   <children>
+      <AnchorPane prefHeight="447.0" prefWidth="291.0">
+         <children>
+            <Label alignment="CENTER" layoutX="21.0" layoutY="14.0" prefHeight="38.0" prefWidth="249.0" styleClass="title" text="Welcome to Caskit!" textAlignment="CENTER" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="237.0" fitWidth="168.0" layoutX="70.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/rocket.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="loginField" focusColor="#2f3b61" layoutX="50.0" layoutY="302.0" prefHeight="25.0" prefWidth="165.0" promptText="Username" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <JFXPasswordField fx:id="passwordField" focusColor="#2f3b61" layoutX="50.0" layoutY="334.0" prefHeight="25.0" prefWidth="165.0" promptText="Password" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <JFXButton layoutX="161.0" layoutY="380.0" onAction="#loginClicked" styleClass="caskit-button" text="Login" AnchorPane.rightAnchor="50.0" />
+            <JFXButton layoutX="79.0" layoutY="380.0" onAction="#cancelClicked" prefHeight="25.0" prefWidth="75.0" styleClass="dull-button" text="Cancel" AnchorPane.rightAnchor="135.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
