@@ -43,3 +43,14 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 
+# Licensed images unavailable for public source content.
+/src/main/resources/images/tray_icons/cancel.png
+/src/main/resources/images/tray_icons/cogwheel.png
+/src/main/resources/images/tray_icons/earth-globe.png
+/src/main/resources/images/tray_icons/exit.png
+/src/main/resources/images/tray_icons/folder.png
+/src/main/resources/images/tray_icons/key.png
+/src/main/resources/images/tray_icons/movie.png
+/src/main/resources/images/tray_icons/phone-book.png
+/src/main/resources/images/tray_icons/screenshot.png
+/src/main/resources/images/rocket.png
