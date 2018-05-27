@@ -22,6 +22,7 @@ public class AppData {
 
     public static void initialize() {
         CaskitPreferences caskitPreferences = getUserPreferences();
+        MacroKeyListener.getDefault().clearHotKeyMacros();
         MacroKeyListener.getDefault().addHotKeyMacro(caskitPreferences.getScreenshotMacro().generateHotKeyMacro(() -> CaptureManager.getDefault().openScreenshotView()));
         MacroKeyListener.getDefault().addHotKeyMacro(caskitPreferences.getRecordMacro().generateHotKeyMacro(() -> CaptureManager.getDefault().openVideoView()));
         initialized = true;
