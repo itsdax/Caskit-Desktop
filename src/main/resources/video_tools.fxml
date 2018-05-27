@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="55.0" prefWidth="350.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.caskit.desktop_app.ui.controllers.VideoControlsController">
+   <children>
+      <AnchorPane fx:id="mainPane" prefHeight="30.0" prefWidth="331.0" style="-fx-background-color: white;" stylesheets="@style.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+         <children>
+            <JFXButton fx:id="cancelButton" onAction="#cancelButtonClicked" styleClass="dull-button" text="Cancel" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="8.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="recordButton" onAction="#recordButtonClicked" styleClass="caskit-button" text="Start" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <Label fx:id="label" layoutX="14.0" layoutY="12.0" text="00:00" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="8.0" />
+            <ImageView fx:id="logoImage" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="8.0" />
+         </children>
+         <styleClass>
+            <String fx:value="drop-shadow" />
+            <String fx:value="rounded-container" />
+         </styleClass>
+      </AnchorPane>
+   </children>
+</AnchorPane>
