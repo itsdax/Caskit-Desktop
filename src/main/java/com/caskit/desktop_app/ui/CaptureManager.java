@@ -5,6 +5,7 @@ import com.caskit.desktop_app.caskit_api.CaskitApi;
 import com.caskit.desktop_app.caskit_api.data.Content;
 import com.caskit.desktop_app.caskit_api.data.Token;
 import com.caskit.desktop_app.executors.AsyncTaskHandler;
+import com.sun.jna.platform.WindowUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -125,7 +126,7 @@ public class CaptureManager implements NativeMouseInputListener, NativeKeyListen
             stage.initStyle(StageStyle.TRANSPARENT);
 
             System.out.println("Generating scene...");
-            Scene scene = new Scene(root, 60, 60);
+            Scene scene = new Scene(root, 60, 60, javafx.scene.paint.Color.TRANSPARENT);
             scene.setFill(null);
             stage.setScene(scene);
 
@@ -277,11 +278,14 @@ public class CaptureManager implements NativeMouseInputListener, NativeKeyListen
                 try {
                     File file = Screenshot.create(
                             AppData.showMouse(),
-                            (int) previousStage.getX(),
-                            (int) previousStage.getY(),
-                            (int) previousStage.getWidth(),
-                            (int) previousStage.getHeight(),
+                            (int) previousStage.getX() + 2,
+                            (int) previousStage.getY() + 2,
+                            (int) previousStage.getWidth() - 4,
+                            (int) previousStage.getHeight() - 4,
                             AppData.getWorkingDirectory() + File.separator + UUID.randomUUID().toString() + ".png");
+                    if (file == null) {
+                        throw new IllegalStateException("Unable to generate screenshot. Check if capture is too small.");
+                    }
                     handleFilePostCreation(file);
                 } catch (IOException e) {
                     e.printStackTrace();

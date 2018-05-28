@@ -40,6 +40,9 @@ public class Screenshot {
     }
 
     public static File create(boolean showMouse, int x, int y, int width, int height, String fileName) throws IOException {
+        if (width * height < 4) {
+            return null;
+        }
         return FileHelper.saveImage(create(showMouse, x, y, width, height), fileName);
     }
 
