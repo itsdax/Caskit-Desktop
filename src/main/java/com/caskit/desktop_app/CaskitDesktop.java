@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 import com.caskit.desktop_app.listeners.MacroKeyListener;
 import com.caskit.desktop_app.listeners.MouseListener;
+import javafx.stage.StageStyle;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import com.caskit.desktop_app.app_data.AppData;
@@ -21,12 +22,19 @@ public class CaskitDesktop extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Platform.setImplicitExit(false);
+        primaryStage.initStyle(StageStyle.UTILITY);
+        primaryStage.setOpacity(0);
+        primaryStage.setHeight(0);
+        primaryStage.setWidth(0);
         primaryStage.hide();
     }
 
 
     public static void main(String[] args) {
         Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);
+
+        System.setProperty("apple.awt.UIElement", "true");
+
 
         try {
             GlobalScreen.registerNativeHook();
