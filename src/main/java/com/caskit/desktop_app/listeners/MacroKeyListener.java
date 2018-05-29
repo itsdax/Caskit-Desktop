@@ -64,7 +64,7 @@ public class MacroKeyListener extends AbstractExecutorService implements NativeK
         }
 
         String key = NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode());
-//        System.out.println("Pressed " + key);
+        System.out.println("Pressed " + key);
 
         List<HotKeySequence> removeList = new ArrayList<>();
         for (HotKeySequence hotKeySequence : getSequences()) {
@@ -107,7 +107,7 @@ public class MacroKeyListener extends AbstractExecutorService implements NativeK
     @Override
     public void nativeKeyReleased(NativeKeyEvent nativeKeyEvent) {
         String key = NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode());
-//        System.out.println("Released " + key);
+        System.out.println("Released " + key);
         sequences.clear();
     }
 
