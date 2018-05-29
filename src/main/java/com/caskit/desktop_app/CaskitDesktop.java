@@ -31,9 +31,9 @@ public class CaskitDesktop extends Application {
 
 
     public static void main(String[] args) {
-        Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);
-
         System.setProperty("apple.awt.UIElement", "true");
+
+        Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);
 
 
         try {
