@@ -5,7 +5,6 @@ import com.caskit.desktop_app.caskit_api.CaskitApi;
 import com.caskit.desktop_app.caskit_api.data.Content;
 import com.caskit.desktop_app.caskit_api.data.Token;
 import com.caskit.desktop_app.executors.AsyncTaskHandler;
-import com.sun.jna.platform.WindowUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -59,5 +59,4 @@ public class CaskitDesktop extends Application {
         launch(args);
     }
 
-
 }

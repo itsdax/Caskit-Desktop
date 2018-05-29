@@ -132,6 +132,7 @@ public class CaskitTrayApp {
         try {
             return ImageIO.read(getClass().getResourceAsStream(resourcePath)).getScaledInstance(size, -1, Image.SCALE_SMOOTH);
         } catch (IOException e) {
+            System.out.println(resourcePath + " could not be found. Using default image.");
             try {
                 return ImageIO.read(getClass().getResourceAsStream("/images/logo.png")).getScaledInstance(size, -1, Image.SCALE_SMOOTH);
             } catch (IOException e1) {

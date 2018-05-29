@@ -28,8 +28,8 @@ public class Screenshot {
             e.printStackTrace();
         }
         try {
-            this.cursor = ImageIO.read(new File(Screenshot.class.getResource("/images/cursor.png").getPath()));
-            this.cursorMac = ImageIO.read(new File(Screenshot.class.getResource("/images/cursor_mac.png").getPath()));
+            this.cursor = ImageIO.read(getClass().getResourceAsStream("/images/cursor.png"));
+            this.cursorMac = ImageIO.read(getClass().getResourceAsStream("/images/cursor_mac.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

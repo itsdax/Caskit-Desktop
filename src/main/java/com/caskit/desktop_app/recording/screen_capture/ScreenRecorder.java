@@ -84,7 +84,7 @@ public class ScreenRecorder extends Recorder {
 
 
     public synchronized Future stop(FileCallback fileCallback) {
-        System.out.println("[Screen Recorder] Stopping com.caskit.desktop_app.recording");
+        System.out.println("[Screen Recorder] Stopping recording");
         super.stop();
 
         return AsyncTaskHandler.submit(() -> {
@@ -107,10 +107,11 @@ public class ScreenRecorder extends Recorder {
         });
     }
 
-    private void createVideo(String path) {
+    private boolean createVideo(String path) {
         System.out.println("Creating video: " + fps + "fps");
         long start = System.currentTimeMillis();
         try {
+            System.out.println(FfmpegLocator.getFfmpeg());
             FFmpeg ffmpeg = new FFmpeg(FfmpegLocator.getFfmpeg());
             FFprobe ffprobe = new FFprobe(FfmpegLocator.getFfprobe());
 
@@ -134,9 +135,10 @@ public class ScreenRecorder extends Recorder {
 
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
         System.out.println("Video generation took: " + (System.currentTimeMillis() - start) + "ms");
-
+        return true;
     }
 
     private static void deleteTempDirectory(File file) {
