@@ -77,6 +77,14 @@ public class AppData {
         }
     }
 
+    public static File getCaskitDirectory() {
+        File file = new File(CASKIT_APP_DIR);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return file;
+    }
+
     public static File getDefaultCaptureDirectory() {
         File file = new File(CASKIT_APP_DIR + File.separator + "capture");
         if (!file.exists()) {

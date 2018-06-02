@@ -33,13 +33,13 @@ public class LoginManager {
 
             stage.getIcons().add(new Image(SettingsManager.class.getResourceAsStream("/images/logo_icon.png")));
             stage.setTitle("Login to Caskit");
-            stage.setScene(new Scene(root, 300, 450));
+            stage.setScene(new Scene(root, 300, 200));
 
             stage.show();
 
-            int prefX = AppData.getPrefLocationSettingX(), prefY = AppData.getPrefLocationSettingY();
-            stage.setX(prefX);
-            stage.setY(prefY);
+//            int prefX = AppData.getPrefLocationSettingX(), prefY = AppData.getPrefLocationSettingY();
+//            stage.setX(prefX);
+//            stage.setY(prefY);
 
         });
     }

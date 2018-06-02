@@ -5,7 +5,6 @@ import com.caskit.desktop_app.caskit_api.CaskitApi;
 import com.caskit.desktop_app.caskit_api.data.Content;
 import com.caskit.desktop_app.caskit_api.data.Token;
 import com.caskit.desktop_app.executors.AsyncTaskHandler;
-import com.sun.jna.platform.WindowUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,8 +30,12 @@ import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CaptureManager implements NativeMouseInputListener, NativeKeyListener {
+
+    private static final Logger logger = Logger.getGlobal();
 
     private static CaptureManager captureView;
 
@@ -315,12 +318,14 @@ public class CaptureManager implements NativeMouseInputListener, NativeKeyListen
 
             if (content == null) {
                 Notification.display("Error on upload.");
+                logger.log(Level.SEVERE, "Unable to upload file.");
                 return;
             }
 
             ClipboardUtils.setClipboard(UrlHelper.getURL(content, AppData.useDirectUrl()));
             Notification.display("Copied to clipboard!");
             UrlHelper.open(content, AppData.useDirectUrl());
+            logger.log(Level.INFO, "Finished uploading file.");
         }
     }
 

@@ -12,12 +12,14 @@ import com.caskit.desktop_app.app_data.AppData;
 import com.caskit.desktop_app.ui.CaptureManager;
 import com.caskit.desktop_app.ui.CaskitTrayApp;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class CaskitDesktop extends Application {
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -31,10 +33,16 @@ public class CaskitDesktop extends Application {
 
 
     public static void main(String[] args) {
-        Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);
-
         System.setProperty("apple.awt.UIElement", "true");
 
+        Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);
+
+        try {
+            Logger.getGlobal().addHandler(new FileHandler(AppData.getCaskitDirectory().getAbsolutePath() + File.separator + "debug.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Logger.getGlobal().log(Level.INFO, "Caskit started...");
 
         try {
             GlobalScreen.registerNativeHook();
@@ -58,6 +66,5 @@ public class CaskitDesktop extends Application {
 
         launch(args);
     }
-
 
 }

@@ -1,5 +1,6 @@
 package com.caskit.desktop_app.app_data;
 
+import com.caskit.desktop_app.utils.PlatformDetector;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.caskit.desktop_app.recording.audio_capture.InputDevices;
 import com.caskit.desktop_app.structures.Macro;
@@ -10,8 +11,8 @@ public class CaskitPreferences implements Jsonable {
 
 
     public static final CaskitPreferences DEFAULT = new CaskitPreferences(
-            Macro.ALT_C,
-            Macro.ALT_V,
+            PlatformDetector.isWindows() ? Macro.ALT_C : Macro.CONTROL_C,
+            PlatformDetector.isWindows() ? Macro.ALT_V : Macro.CONTROL_V,
             true,
             InputDevices.getDefaultMixerName(),
             18,
