@@ -8,11 +8,15 @@ import org.json.JSONObject;
 import com.caskit.desktop_app.utils.Jsonable;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static com.google.common.net.HttpHeaders.*;
 
 
 public class CaskitApi {
+
+    private static final Logger logger = Logger.getGlobal();
 
     private static CaskitApi ourInstance = new CaskitApi();
 
@@ -48,6 +52,7 @@ public class CaskitApi {
             response = parseResponse(okHttpClient.newCall(request).execute());
             return Jsonable.fromJSON(response, Token.class);
         } catch (Exception e) {
+            logger.log(Level.SEVERE, "Could not login: " + e.getMessage());
             System.out.println(response);
             throw new IllegalStateException(response);
         }
@@ -59,6 +64,7 @@ public class CaskitApi {
     }
 
     public Content upload(File file, String token) {
+
         MediaType mediaType = MediaType.parse("multipart/form-data");
         RequestBody requestBody = new MultipartBody.Builder()
                 .addFormDataPart("content", file.getName(), RequestBody.create(mediaType, file))
@@ -73,12 +79,15 @@ public class CaskitApi {
             requestBuilder.addHeader("token", token);
         }
 
+        logger.log(Level.INFO, "Uploading content as " + (token != null ? "User" : "Anonymous"));
+
         String response = null;
         try {
             response = parseResponse(okHttpClient.newCall(requestBuilder.build()).execute());
             System.out.println(response);
             return Jsonable.fromJSON(response, Content.class);
         } catch (Exception e) {
+            logger.log(Level.SEVERE, "Could not login: " + e.getMessage());
             System.out.println(response);
         }
 
@@ -115,6 +124,7 @@ public class CaskitApi {
                 return body;
             }
         } catch (Exception e) {
+            logger.log(Level.SEVERE, "Could not parse response: " + e.getMessage());
 //            e.printStackTrace();
         }
         return null;

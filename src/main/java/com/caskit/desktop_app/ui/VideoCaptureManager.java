@@ -20,8 +20,12 @@ import com.caskit.desktop_app.ui.controllers.VideoControlsController;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class VideoCaptureManager {
+
+    private static final Logger logger = Logger.getGlobal();
 
     private Stage stage;
     private VideoControlsController videoControlsController;
@@ -114,6 +118,7 @@ class VideoCaptureManager {
                     });
             videoCapturer.start();
         } catch (Exception e) {
+            logger.log(Level.SEVERE, "Could not capture video: " + e.getMessage());
             e.printStackTrace();
             close(CaptureStatus.FAIL);
         }

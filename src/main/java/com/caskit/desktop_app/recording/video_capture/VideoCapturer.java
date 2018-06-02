@@ -3,6 +3,7 @@ package com.caskit.desktop_app.recording.video_capture;
 import com.caskit.desktop_app.callback.FileCallback;
 import com.caskit.desktop_app.exceptions.RecorderException;
 import com.caskit.desktop_app.executors.AsyncTaskHandler;
+import net.bramp.ffmpeg.ProcessFunction;
 import net.bramp.ffmpeg.progress.ProgressListener;
 import org.apache.commons.io.FileUtils;
 import com.caskit.desktop_app.recording.Recorder;
@@ -17,9 +18,14 @@ import com.caskit.desktop_app.utils.FfmpegLocator;
 import javax.sound.sampled.Line;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.Future;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class VideoCapturer extends Recorder {
+
+    private static Logger logger = Logger.getGlobal();
 
     private boolean showMouse;
     private String outputPath;
@@ -110,6 +116,7 @@ public class VideoCapturer extends Recorder {
                             fileCallback.trigger(outputFile);
                         }
                     } catch (IOException e) {
+                        logger.log(Level.SEVERE, "Unable to copy recorded screen capture over. " + e.getMessage());
                         throw new RecorderException("Could not generate capture.");
                     }
                 });
@@ -149,7 +156,6 @@ public class VideoCapturer extends Recorder {
     private static void combineAudioAndVideo(File audio, File video, String outputPath, ProgressListener progressListener) {
         try {
             FFmpeg ffmpeg = new FFmpeg(FfmpegLocator.getFfmpeg());
-            FFprobe ffprobe = new FFprobe(FfmpegLocator.getFfprobe());
 
             FFmpegBuilder builder = new FFmpegBuilder()
                     .addInput(video.getAbsolutePath())
@@ -157,7 +163,7 @@ public class VideoCapturer extends Recorder {
                     .addOutput(outputPath)
                     .done();
 
-            FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
+            FFmpegExecutor executor = new FFmpegExecutor(ffmpeg);
             if (progressListener != null) {
                 executor.createJob(builder, progressListener).run();
             } else {
@@ -165,7 +171,7 @@ public class VideoCapturer extends Recorder {
             }
 
         } catch (Exception e) {
-
+            logger.log(Level.SEVERE, "Unable to combine screen recording with audio. " + e.getMessage());
         }
     }
 

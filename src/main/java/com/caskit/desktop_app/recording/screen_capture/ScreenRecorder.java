@@ -21,9 +21,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class ScreenRecorder extends Recorder {
+
+    private static final Logger logger = Logger.getGlobal();
 
     private ProgressListener progressListener;
     private ExecutorService executorService;
@@ -64,9 +68,11 @@ public class ScreenRecorder extends Recorder {
                 BufferedImage bufferedImage = Screenshot.create(showMouse, x, y, width, height);
                 int finalI = counter++;
                 executorService.submit(() -> {
+                    String fileName = String.format("%04d", finalI) + ".png";
                     try {
-                        FileHelper.saveImage(bufferedImage, tempDir.getAbsolutePath() + File.separator + String.format("%04d", finalI) + ".png");
+                        FileHelper.saveImage(bufferedImage, tempDir.getAbsolutePath() + File.separator + fileName);
                     } catch (IOException e) {
+                        logger.log(Level.SEVERE, "Unable to save image for screen capture [" + fileName + "]" + ": " + e.getMessage());
                         e.printStackTrace();
                     }
                 });
@@ -98,11 +104,20 @@ public class ScreenRecorder extends Recorder {
 
             sleep(1000);
 
-            createVideo(tempDir.getAbsolutePath() + File.separator + "%04d.png");
-            deleteTempDirectory(tempDir);
+            try {
+                if (!createVideo(tempDir.getAbsolutePath() + File.separator + "%04d.png")) {
+                    if (fileCallback != null) {
+                        fileCallback.trigger(null);
+                    }
+                    return;
+                }
 
-            if (fileCallback != null) {
-                fileCallback.trigger(new File(outputPath));
+                if (fileCallback != null) {
+                    fileCallback.trigger(new File(outputPath));
+                }
+
+            } finally {
+                deleteTempDirectory(tempDir);
             }
         });
     }
@@ -113,7 +128,6 @@ public class ScreenRecorder extends Recorder {
         try {
             System.out.println(FfmpegLocator.getFfmpeg());
             FFmpeg ffmpeg = new FFmpeg(FfmpegLocator.getFfmpeg());
-            FFprobe ffprobe = new FFprobe(FfmpegLocator.getFfprobe());
 
             FFmpegBuilder builder = new FFmpegBuilder()
                     .addInput(path)
@@ -125,7 +139,7 @@ public class ScreenRecorder extends Recorder {
                     .addExtraArgs("-color_range", "2", "-pix_fmt", "yuvj420p")
                     .done();
 
-            FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
+            FFmpegExecutor executor = new FFmpegExecutor(ffmpeg);
 
             if (progressListener != null) {
                 executor.createJob(builder, progressListener).run();
@@ -134,6 +148,7 @@ public class ScreenRecorder extends Recorder {
             }
 
         } catch (IOException e) {
+            logger.log(Level.SEVERE, "Unable to generate screen capture: " + e.getMessage());
             e.printStackTrace();
             return false;
         }

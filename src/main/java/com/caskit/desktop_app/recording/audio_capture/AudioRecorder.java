@@ -8,8 +8,12 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AudioRecorder extends Recorder {
+
+    private static final Logger logger = Logger.getGlobal();
 
     private TargetDataLine line;
     private Line.Info info;
@@ -32,8 +36,7 @@ public class AudioRecorder extends Recorder {
                 AudioSystem.write(ais, AudioFileFormat.Type.WAVE, new File(outputPath));
             } catch (Exception e) {
                 e.printStackTrace();
-
-                //TODO: THIS CAN CAUSE ERROR!!!!
+                logger.log(Level.SEVERE, "Unable to generate audio recording: " + e.getMessage());
             }
         });
     }
